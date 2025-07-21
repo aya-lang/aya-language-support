@@ -2,7 +2,7 @@
   <img align="center" width="180px" src="images/logo.png" />
 </p>
 
-# Aya Language Support for VS Code
+# Aya Programming Language for VS Code
 
 Support for the [Aya](https://github.com/aya-lang/aya) programming language.
 

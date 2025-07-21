@@ -1,6 +1,6 @@
 {
   "name": "aya-language-support",
-  "displayName": "Aya Language Support",
+  "displayName": "Aya Programming Language",
   "description": "Support for the Aya scripting language",
   "version": "0.0.1",
   "icon": "images/logo.png",
