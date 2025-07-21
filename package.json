@@ -7,6 +7,16 @@
   "engines": {
     "vscode": "^1.102.0"
   },
+  "publisher": "nick-paul",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aya-lang/aya-language-support.git"
+  },
+  "homepage": "https://github.com/aya-lang/aya-language-support",
+  "bugs": {
+    "url": "https://github.com/aya-lang/aya-language-support"
+  },
+  "keywords": ["aya", "language", "syntax highlighting", "stack-oriented", "code-golf"],
   "categories": [
     "Programming Languages"
   ],
