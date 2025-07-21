@@ -1,0 +1,304 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "AYA",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#characters"
+    },
+    {
+      "include": "#symbols"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#identifiers"
+    },
+    {
+      "include": "#assignments"
+    },
+    {
+      "include": "#lists"
+    },
+    {
+      "include": "#dictionaries"
+    },
+    {
+      "include": "#blocks"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.aya",
+          "match": "\\.#.*$"
+        },
+        {
+          "name": "comment.block.aya",
+          "begin": "\\.\\{",
+          "end": "\\.\\}"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "meta.function.aya",
+          "match": "\\b(def)\\s+([a-z_][a-z0-9_]*::[a-z_][a-z0-9_]*|[a-z_][a-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.aya"
+            },
+            "2": {
+              "name": "entity.name.function.aya"
+            }
+          }
+        },
+        {
+          "name": "keyword.control.aya",
+          "match": "\\b(class|struct|import|require)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.triple.aya",
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.aya",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.aya",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.aya",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.arbitrary.aya",
+          "match": ":-?\\d+(\\.\\d+)?z"
+        },
+        {
+          "name": "constant.numeric.hex.aya",
+          "match": ":0x[0-9a-fA-F]+"
+        },
+        {
+          "name": "constant.numeric.binary.aya",
+          "match": ":0b[01]+"
+        },
+        {
+          "name": "constant.numeric.scientific.aya",
+          "match": ":-?\\d+(\\.\\d+)?e[+-]?\\d+"
+        },
+        {
+          "name": "constant.numeric.fraction.aya",
+          "match": ":-?\\d+r\\d+"
+        },
+        {
+          "name": "constant.numeric.pi.aya",
+          "match": ":-?\\d+p\\d*"
+        },
+        {
+          "name": "constant.numeric.root.aya",
+          "match": ":-?\\d+q\\d*"
+        },
+        {
+          "name": "constant.numeric.complex.aya",
+          "match": ":-?\\d+(\\.\\d+)?i[+-]?\\d+(\\.\\d+)?"
+        },
+        {
+          "name": "constant.numeric.constant.aya",
+          "match": ":\\d+c"
+        },
+        {
+          "name": "constant.numeric.decimal.aya",
+          "match": "[+-]?\\d+(\\.\\d+)?"
+        }
+      ]
+    },
+    "characters": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.escape.aya",
+          "match": "'\\\\[ntrfav\\\\\"']'"
+        },
+        {
+          "name": "string.quoted.single.hex.aya",
+          "match": "'\\\\x[0-9a-fA-F]+'"
+        },
+        {
+          "name": "string.quoted.single.aya",
+          "match": "'."
+        }
+      ]
+    },
+    "symbols": {
+      "patterns": [
+        {
+          "name": "constant.other.symbol.quoted.aya",
+          "match": "::\"[^\"]*\""
+        },
+        {
+          "name": "constant.other.symbol.operator.m.aya",
+          "match": "::M."
+        },
+        {
+          "name": "constant.other.symbol.operator.aya",
+          "match": "::[.:][A-Z@#$%+*\\-=\\/\\\\?|~!&^<>]+"
+        },
+        {
+          "name": "constant.other.symbol.operator.simple.aya",
+          "match": "::[A-Z@#$%+*\\-=\\/\\\\?|~!&^<>]+"
+        },
+        {
+          "name": "constant.other.symbol.aya",
+          "match": "::[a-z_]+"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.m.aya",
+          "match": "[.:]*M."
+        },
+        {
+          "name": "keyword.operator.prefix.aya",
+          "match": "[.:][@#$%+*\\-=\\/\\\\?|~!&^<>A-Z]+"
+        },
+        {
+          "name": "keyword.operator.aya",
+          "match": "[@#$%+*\\-=\\/\\\\?|~!&^<>A-Z]+"
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "variable.other.aya",
+          "match": "[a-z_]+"
+        }
+      ]
+    },
+    "assignments": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.quoted.aya",
+          "match": ":\"[^\"]*\""
+        },
+        {
+          "name": "keyword.operator.assignment.aya",
+          "match": ":[a-z_]+"
+        }
+      ]
+    },
+    "lists": {
+      "patterns": [
+        {
+          "name": "meta.brackets.aya",
+          "begin": "\\[",
+          "end": "\\]",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "keyword.operator.list.index.aya",
+          "match": "\\.[:\\[]\\d*\\]"
+        }
+      ]
+    },
+    "dictionaries": {
+      "patterns": [
+        {
+          "name": "meta.dictionary.aya",
+          "begin": ":\\{",
+          "end": "\\}",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "keyword.operator.dict.access.quoted.aya",
+          "match": "\\.\"[^\"]*\""
+        },
+        {
+          "name": "keyword.operator.dict.access.aya",
+          "match": "\\.[a-z_][a-z0-9_]*"
+        },
+        {
+          "name": "keyword.operator.dict.assign.aya",
+          "match": "\\.[:]"
+        }
+      ]
+    },
+    "blocks": {
+      "patterns": [
+        {
+          "name": "meta.block.aya",
+          "begin": "\\{",
+          "end": "\\}",
+          "patterns": [
+            {
+              "include": "#function-parameters"
+            },
+            {
+              "include": "#assignments"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "function-parameters": {
+      "patterns": [
+        {
+          "name": "meta.function.parameter.aya",
+          "match": "([a-z_]+)(::[a-z_]+|::\"[^\"]*\")",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.aya"
+            },
+            "2": {
+              "name": "storage.type.aya"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.aya"
+}
