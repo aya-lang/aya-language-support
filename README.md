@@ -12,7 +12,9 @@ Support for the [Aya](https://github.com/aya-lang/aya) programming language.
 
   - Syntax highlighting
   - Automatic syntax error checking
-  - Run code with the play button
+  - Quick run line with `shift+enter`
+  - Quick run file with `ctrl+shift+enter`
+  - Run file as process with play button
 
 ## Requirements
 

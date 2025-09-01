@@ -186,6 +186,10 @@
     "operators": {
       "patterns": [
         {
+          "name": "keyword.operator.special.parentheses.aya",
+          "match": ":\\([^)]*\\)"
+        },
+        {
           "name": "keyword.operator.m.aya",
           "match": "[.:]*M."
         },
@@ -210,11 +214,15 @@
     "assignments": {
       "patterns": [
         {
+          "name": "entity.name.function.aya",
+          "match": "\\.[:]([a-z_]+)"
+        },
+        {
           "name": "keyword.operator.assignment.quoted.aya",
           "match": ":\"[^\"]*\""
         },
         {
-          "name": "keyword.operator.assignment.aya",
+          "name": "entity.name.function.aya",
           "match": ":[a-z_]+"
         }
       ]
@@ -254,10 +262,6 @@
           "match": "\\.\"[^\"]*\""
         },
         {
-          "name": "keyword.operator.dict.access.aya",
-          "match": "\\.[a-z_][a-z0-9_]*"
-        },
-        {
           "name": "keyword.operator.dict.assign.aya",
           "match": "\\.[:]"
         }
@@ -266,13 +270,33 @@
     "blocks": {
       "patterns": [
         {
+          "name": "meta.block.with.parameters.aya",
+          "begin": "\\{(?=[^}]*,)",
+          "end": "\\}",
+          "patterns": [
+            {
+              "name": "meta.function.parameters.aya",
+              "begin": "(?<=\\{)",
+              "end": ",|(?=\\})",
+              "patterns": [
+                {
+                  "include": "#function-parameters"
+                }
+              ]
+            },
+            {
+              "include": "#assignments"
+            },
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
           "name": "meta.block.aya",
           "begin": "\\{",
           "end": "\\}",
           "patterns": [
-            {
-              "include": "#function-parameters"
-            },
             {
               "include": "#assignments"
             },
@@ -287,7 +311,7 @@
       "patterns": [
         {
           "name": "meta.function.parameter.aya",
-          "match": "([a-z_]+)(::[a-z_]+|::\"[^\"]*\")",
+          "match": "([a-z_]+)(::(?:\\[(?:[^\\[\\]]*|\\[(?:[^\\[\\]]*|\\[[^\\]]*\\])*\\])*\\])*[a-z_]+(?:\\.[a-z_]+)*|::\"[^\"]*\")",
           "captures": {
             "1": {
               "name": "variable.parameter.aya"
@@ -296,6 +320,10 @@
               "name": "storage.type.aya"
             }
           }
+        },
+        {
+          "name": "variable.parameter.aya",
+          "match": "\\b[a-z_]+\\b(?!::)"
         }
       ]
     }
